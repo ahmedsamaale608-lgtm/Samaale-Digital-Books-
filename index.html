@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samaale Digital Books — Maktabadda Dijitalka ah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Adsterra ad network script -->
+<script src="https://pl30309907.effectivecpmnetwork.com/ce/b1/f1/ceb1f1749d465e8d9e79213b087fd63d.js"></script>
+<style>
+  :root{
+    --bg:#0f101c;
+    --bg-panel:#171a2b;
+    --bg-card:#1d2036;
+    --bg-card-hover:#242847;
+    --text:#f4eee0;
+    --text-muted:#a6a4bd;
+    --text-faint:#6c6a86;
+    --gold:#e2ab52;
+    --gold-dim:#b98c3f;
+    --teal:#49aca2;
+    --rose:#c96e6e;
+    --sage:#84a374;
+    --periwinkle:#8b93d6;
+    --border:rgba(226,171,82,0.16);
+    --border-soft:rgba(244,238,224,0.08);
+    --shadow:0 20px 50px -20px rgba(0,0,0,0.6);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:#151626;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:700;letter-spacing:-0.01em;}
+  .container{max-width:1180px;margin:0 auto;padding:0 28px;}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  /* ---------- background texture ---------- */
+  .noise-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:radial-gradient(circle at 15% 8%, rgba(226,171,82,0.07), transparent 40%),
+                      radial-gradient(circle at 85% 20%, rgba(73,172,162,0.06), transparent 45%),
+                      radial-gradient(circle at 50% 90%, rgba(139,147,214,0.05), transparent 40%);
+  }
+
+  /* ---------- zigzag divider (alindi-inspired) ---------- */
+  .zigzag{
+    height:14px;width:100%;
+    background:
+      linear-gradient(135deg, var(--gold) 25%, transparent 25%) 0 0/14px 14px,
+      linear-gradient(-135deg, var(--gold) 25%, transparent 25%) 0 0/14px 14px;
+    background-color:transparent;
+    opacity:0.85;
+  }
+  .zigzag.alt{
+    background:
+      linear-gradient(135deg, var(--teal) 25%, transparent 25%) 0 0/14px 14px,
+      linear-gradient(-135deg, var(--teal) 25%, transparent 25%) 0 0/14px 14px;
+    opacity:0.5;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(15,16,28,0.78);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav-wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{
+    width:36px;height:36px;flex:none;
+  }
+  .brand-text{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;}
+  .brand-text small{display:block;font-family:'Work Sans',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  nav.links{display:flex;gap:30px;align-items:center;}
+  nav.links a{
+    font-size:0.92rem;font-weight:500;color:var(--text-muted);
+    transition:color .2s ease;position:relative;
+  }
+  nav.links a:hover{color:var(--text);}
+  .nav-cta{
+    background:var(--gold);color:#1a1408;padding:9px 18px;border-radius:30px;
+    font-weight:600;font-size:0.88rem;transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 20px -6px rgba(226,171,82,0.5);}
+  .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;z-index:1;padding:88px 0 60px;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--teal);font-weight:600;margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);}
+  .hero h1{
+    font-size:clamp(2.4rem, 4.4vw, 3.6rem);
+    line-height:1.08;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--gold);font-weight:600;
+  }
+  .hero p.lead{
+    font-size:1.08rem;color:var(--text-muted);max-width:520px;margin-bottom:34px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 26px;border-radius:30px;font-weight:600;font-size:0.94rem;
+    cursor:pointer;border:1px solid transparent;transition:all .22s ease;
+  }
+  .btn-primary{background:var(--gold);color:#1a1408;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(226,171,82,0.55);}
+  .btn-outline{border-color:var(--border);color:var(--text);}
+  .btn-outline:hover{background:rgba(244,238,224,0.05);border-color:var(--text-muted);}
+
+  /* ---------- signature: bookshelf ---------- */
+  .shelf-wrap{position:relative;perspective:900px;}
+  .shelf{
+    display:flex;align-items:flex-end;gap:5px;
+    background:linear-gradient(180deg, rgba(226,171,82,0.06), transparent);
+    border-radius:18px;padding:34px 24px 0;
+    border:1px solid var(--border-soft);
+    height:340px;overflow:hidden;
+  }
+  .spine{
+    flex:1;border-radius:5px 5px 0 0;position:relative;
+    display:flex;align-items:flex-start;justify-content:center;padding-top:14px;
+    transition:transform .35s ease, filter .35s ease;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,0.15);
+    cursor:default;
+  }
+  .spine:hover{transform:translateY(-14px) rotateZ(-1deg);filter:brightness(1.12);}
+  .spine span{
+    writing-mode:vertical-rl;text-orientation:mixed;
+    font-family:'Fraunces',serif;font-weight:600;font-size:0.78rem;
+    color:rgba(0,0,0,0.55);letter-spacing:0.02em;
+  }
+  .shelf-base{
+    height:16px;margin-top:-2px;border-radius:0 0 10px 10px;
+    background:linear-gradient(180deg, #241f14, #171304);
+    border:1px solid var(--border-soft);border-top:none;
+  }
+  .shelf-caption{
+    text-align:center;font-size:0.78rem;color:var(--text-faint);margin-top:14px;font-style:italic;
+  }
+
+  /* ---------- stats ---------- */
+  .stats{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);
+  }
+  .stat{
+    padding:34px 20px;text-align:center;border-left:1px solid var(--border-soft);
+  }
+  .stat:first-child{border-left:none;}
+  .stat .num{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:700;color:var(--gold);}
+  .stat .label{font-size:0.78rem;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.06em;}
+
+  /* ---------- section heading ---------- */
+  .section{position:relative;z-index:1;padding:80px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
+  .section-head p{color:var(--text-muted);max-width:440px;font-size:0.96rem;}
+
+  /* ---------- library controls ---------- */
+  .controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;align-items:center;}
+  .search-box{
+    flex:1;min-width:220px;display:flex;align-items:center;gap:10px;
+    background:var(--bg-panel);border:1px solid var(--border-soft);border-radius:12px;
+    padding:12px 16px;
+  }
+  .search-box input{
+    background:none;border:none;color:var(--text);font-family:inherit;font-size:0.94rem;
+    outline:none;width:100%;
+  }
+  .search-box input::placeholder{color:var(--text-faint);}
+  .chip{
+    padding:9px 16px;border-radius:20px;border:1px solid var(--border-soft);
+    font-size:0.84rem;color:var(--text-muted);cursor:pointer;background:var(--bg-panel);
+    transition:all .2s ease;white-space:nowrap;
+  }
+  .chip.active,.chip:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* ---------- book grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;}
+  .card{
+    background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);
+    overflow:hidden;transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-5px);border-color:var(--border);box-shadow:var(--shadow);}
+  .cover{
+    height:172px;position:relative;display:flex;align-items:center;justify-content:center;
+    background-size:14px 14px;background-position:center;background-repeat:no-repeat;
+  }
+  .cover.has-image{background-size:cover;}
+  .cover .letter{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:3.2rem;
+    color:rgba(255,255,255,0.88);text-shadow:0 4px 14px rgba(0,0,0,0.3);
+  }
+  .cover .badge{
+    position:absolute;top:10px;left:10px;font-size:0.66rem;padding:4px 9px;border-radius:20px;
+    background:rgba(15,16,28,0.55);color:#fff;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;
+    backdrop-filter:blur(4px);
+  }
+  .card-body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:4px;flex:1;}
+  .card-body h4{font-size:1rem;line-height:1.3;}
+  .card-body .details{font-size:0.82rem;color:var(--text-muted);}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px;gap:8px;flex-wrap:wrap;}
+  .filesize{font-size:0.72rem;color:var(--text-faint);}
+  .card-actions{display:flex;align-items:center;gap:14px;margin-left:auto;}
+  .dl-btn{
+    display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;
+    color:var(--gold);cursor:pointer;background:none;border:none;font-family:inherit;
+  }
+  .dl-btn:hover{color:#fff;}
+  .dl-btn[disabled]{color:var(--text-faint);cursor:not-allowed;}
+  .icon-btn{
+    display:flex;align-items:center;gap:5px;font-size:0.78rem;font-weight:600;
+    cursor:pointer;background:none;border:none;font-family:inherit;color:var(--text-muted);
+    transition:color .2s ease;
+  }
+  .icon-btn:hover{color:var(--text);}
+  .share-btn:hover{color:var(--teal);}
+  .edit-btn:hover{color:var(--periwinkle);}
+  .empty-state{
+    grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted);
+    border:1px dashed var(--border-soft);border-radius:var(--radius);
+  }
+
+  /* ---------- upload section ---------- */
+  .upload-panel{
+    background:var(--bg-panel);border:1px solid var(--border-soft);border-radius:20px;
+    padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:44px;
+  }
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:0.82rem;color:var(--text-muted);margin-bottom:7px;font-weight:500;}
+  .field input[type=text],.field select,.field textarea{
+    width:100%;background:var(--bg-card);border:1px solid var(--border-soft);border-radius:10px;
+    padding:12px 14px;color:var(--text);font-family:inherit;font-size:0.92rem;outline:none;
+    transition:border-color .2s ease;resize:vertical;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);}
+  .drop-zone{
+    border:1.5px dashed var(--border);border-radius:12px;padding:26px;text-align:center;
+    cursor:pointer;transition:all .2s ease;color:var(--text-muted);font-size:0.86rem;
+  }
+  .drop-zone:hover,.drop-zone.dragover{border-color:var(--gold);background:rgba(226,171,82,0.05);color:var(--text);}
+  .drop-zone strong{color:var(--gold);}
+  .drop-zone.compact{padding:16px;}
+  .drop-zone .cover-thumb{
+    width:74px;height:74px;border-radius:8px;object-fit:cover;margin:0 auto 10px;
+    border:1px solid var(--border-soft);
+  }
+  .hint{font-size:0.74rem;color:var(--text-faint);margin-top:8px;}
+  .note{
+    font-size:0.78rem;color:var(--text-faint);margin-top:6px;font-style:italic;
+    display:flex;gap:6px;align-items:flex-start;
+  }
+  .preview-side{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+  .preview-side .hint-label{font-size:0.76rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);}
+  .preview-card{width:210px;}
+  .submit-row{display:flex;align-items:center;gap:16px;margin-top:6px;}
+
+  /* ---------- footer ---------- */
+  footer{position:relative;z-index:1;border-top:1px solid var(--border-soft);padding:50px 0 34px;}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px;}
+  .foot-brand p{color:var(--text-muted);max-width:340px;font-size:0.9rem;margin-top:10px;}
+  .foot-cols{display:flex;gap:60px;}
+  .foot-col h5{font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:12px;}
+  .foot-col a{display:block;font-size:0.88rem;color:var(--text-muted);margin-bottom:9px;}
+  .foot-col a:hover{color:var(--text);}
+  .foot-bottom{font-size:0.78rem;color:var(--text-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- toast ---------- */
+  #toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);
+    background:var(--gold);color:#1a1408;padding:14px 24px;border-radius:12px;font-weight:600;
+    font-size:0.9rem;z-index:100;transition:transform .35s ease;box-shadow:var(--shadow);
+  }
+  #toast.show{transform:translateX(-50%) translateY(0);}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;animation:none !important;}
+  }
+
+  @media (max-width:880px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(3){border-left:none;}
+    .upload-panel{grid-template-columns:1fr;padding:28px;}
+    .foot-grid{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div class="noise-bg"></div>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none">
+        <rect x="2" y="6" width="36" height="28" rx="4" fill="#1d2036" stroke="#e2ab52" stroke-width="1.4"/>
+        <path d="M20 9 v22" stroke="#e2ab52" stroke-width="1.2" opacity="0.6"/>
+        <path d="M6 12 Q13 9 20 12 V29 Q13 26 6 29 Z" fill="#49aca2" opacity="0.85"/>
+        <path d="M34 12 Q27 9 20 12 V29 Q27 26 34 29 Z" fill="#e2ab52" opacity="0.85"/>
+      </svg>
+      <div class="brand-text">Samaale <span style="color:var(--gold)">Digital</span> Books<small>Maktabadda Suugaanta Soomaalida</small></div>
+    </div>
+    <nav class="links">
+      <a href="#maktabadda">Maktabadda</a>
+      <a href="#sida-shaqeeyo">Sida ay u Shaqeyso</a>
+      <a href="#soo-geli">Soo Geli Buug</a>
+      <a href="#soo-geli" class="nav-cta">Soo Geli Buug</a>
+    </nav>
+    <button class="menu-btn" aria-label="menu">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Maktabad Furan &amp; La Wadaago</div>
+      <h1>Suugaanta iyo aqoonta Soomaalida, <em>gacanta ku hay</em> — meel kasta oo aad joogto.</h1>
+      <p class="lead">Samaale Digital Books waa maktabad dijital ah oo bilaash ah, halkaas oo qof kastaa uu ku soo gelin karo buugaggiisa, oo uu qof kastaana ku soo dejisan karo. Wax server ah lama isticmaalo — dhammaan waxay ku shaqeeyaan biraawsarkaaga.</p>
+      <div class="hero-ctas">
+        <a href="#maktabadda" class="btn btn-primary">📚 Baar Maktabadda</a>
+        <a href="#soo-geli" class="btn btn-outline">⬆ Soo Geli Buug Cusub</a>
+      </div>
+    </div>
+    <div class="shelf-wrap reveal">
+      <div class="shelf" id="heroShelf"></div>
+      <div class="shelf-base"></div>
+      <p class="shelf-caption">"Buug la aqriyo waa nal la shido" — Maahmaah Soomaaliyeed</p>
+    </div>
+  </div>
+</section>
+
+<div class="zigzag"></div>
+
+<section class="stats reveal">
+  <div class="stat"><div class="num" id="statBooks">0</div><div class="label">Buug oo diyaar ah</div></div>
+  <div class="stat"><div class="num" id="statCats">0</div><div class="label">Qaybood suugaaneed</div></div>
+  <div class="stat"><div class="num" id="statDownloads">0</div><div class="label">Soo dejin</div></div>
+</section>
+
+<section class="section" id="maktabadda">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Dashboard-ka Buugaagta</div>
+        <h2>Maktabadda</h2>
+        <p>Raadi buug, ama u shaandhee qaybta suugaaneed ee aad rabto. Buug kastaa wuxuu leeyahay badhan "⬇ Soo Deji" oo aad kaga soo dejin karto faylka buugga.</p>
+      </div>
+    </div>
+    <div class="controls reveal">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Raadi cinwaan ama qoraa…">
+      </div>
+      <div class="chip active" data-cat="dhammaan">Dhammaan</div>
+      <div class="chip" data-cat="Suugaan">Suugaan</div>
+      <div class="chip" data-cat="Gabayo">Gabayo</div>
+      <div class="chip" data-cat="Taariikh">Taariikh</div>
+      <div class="chip" data-cat="Sheeko">Sheeko</div>
+      <div class="chip" data-cat="Cilmi">Cilmi</div>
+    </div>
+    <!-- Adsterra native banner -->
+    <script async="async" data-cfasync="false" src="https://pl30319757.effectivecpmnetwork.com/7ae36dff9d56da90b608ea9282721c56/invoke.js"></script>
+    <div id="container-7ae36dff9d56da90b608ea9282721c56" style="margin-bottom:28px;"></div>
+    <div class="grid reveal" id="bookGrid"></div>
+  </div>
+</section>
+
+<div class="zigzag alt"></div>
+
+<section class="section" id="soo-geli">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <h2>Soo Geli Buugaaga</h2>
+        <p>Qaybtan waxaa keliya oo geli kara maamulaha bogga (admin-ka). Marka buug la geliyo, wuxuu si toos ah ugu soo muuqan doonaa maktabadda kor ku xusan — laakiin biraawsarkan (browser) oo keliya, sidaas darteed isticmaal isku mid ah marka aad buugaag ku darayso.</p>
+      </div>
+    </div>
+
+    <div class="upload-panel reveal" id="adminGate" style="grid-template-columns:1fr;max-width:440px;margin:0 auto;">
+      <div>
+        <div class="field">
+          <label for="adminPass">Furaha Maamulka (Admin Password)</label>
+          <input type="password" id="adminPass" placeholder="Geli furaha si aad buug u soo gelisid" autocomplete="off">
+        </div>
+        <div class="submit-row">
+          <button type="button" class="btn btn-primary" id="adminLoginBtn">Gal si aad Buug u Soo Gelisid</button>
+        </div>
+        <div class="note">🔒 Foomka soo gelinta buugaagta waxaa gaar u ah maamulaha bogga oo keliya. Booqdayaasha kale waxay heli karaan oo keliya inay maktabadda arkaan oo ay buugaagta ka soo dejiyaan.</div>
+      </div>
+    </div>
+
+    <div class="upload-panel reveal" id="uploadPanel" style="display:none;">
+      <form id="uploadForm">
+        <div class="field">
+          <label for="fTitle">Cinwaanka Buugga *</label>
+          <input type="text" id="fTitle" placeholder="Tusaale: Aqoondarro waa u Nacab Jacayl" required>
+        </div>
+        <div class="field">
+          <label for="fDetails">Faahfaahinta Buugga *</label>
+          <textarea id="fDetails" rows="3" placeholder="Tusaale: Sharraxaad kooban oo ku saabsan buugga — waxa uu ka hadlayo, muhiimadiisa, iyo macluumaad kale oo faa'iido leh." required></textarea>
+        </div>
+        <div class="field">
+          <label for="fCat">Qaybta Suugaaneed</label>
+          <select id="fCat">
+            <option>Suugaan</option>
+            <option>Gabayo</option>
+            <option>Taariikh</option>
+            <option>Sheeko</option>
+            <option>Cilmi</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Qaabka Buugga (Cover — JPG)</label>
+          <div class="drop-zone compact" id="coverDropZone">
+            <div id="coverDropZoneText">Halkan ku <strong>tuur sawirka qaabka</strong> (JPG), ama guji si aad u doorato</div>
+            <input type="file" id="fCover" accept=".jpg,.jpeg,image/jpeg" style="display:none">
+          </div>
+          <div class="hint">Ikhtiyaari — haddii aan sawir la gelin, buugga wuxuu heli doonaa qaab midab ah oo toos ah. Ugu badnaan 800KB.</div>
+        </div>
+        <div class="field">
+          <label>Faylka Buugga (PDF, EPUB, TXT)</label>
+          <div class="drop-zone" id="dropZone">
+            <div id="dropZoneText">Halkan ku <strong>tuur faylka</strong>, ama guji si aad u doorato</div>
+            <input type="file" id="fFile" accept=".pdf,.epub,.txt" style="display:none">
+          </div>
+          <div class="hint">Ugu badnaan 1.5MB — faylasha waaweyn isticmaal xiriiriye (link) halkii.</div>
+        </div>
+        <div class="note" id="editModeNote" style="display:none;color:var(--periwinkle);">✎ Waxaad wax ka beddelaysaa buug hore loo geliyay. Faylka iyo sawirka hore way sii jirayaan haddii aadan mid cusub soo gelin.</div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary" id="uploadSubmitBtn">Soo Geli Buugga</button>
+          <button type="button" class="btn btn-outline" id="cancelEditBtn" style="display:none;">Kansel</button>
+          <button type="button" class="btn btn-outline" id="deleteBookBtn" style="display:none;border-color:var(--rose);color:var(--rose);">🗑 Tirtir Buugga</button>
+        </div>
+        <div class="note">⚠️ Fiiro gaar ah: buugaagta aad soo gelisid waxay ku kaydsanaan doonaan biraawsarkan (browser) oo keliya — kuma muuqan doonaan booqdayaasha kale ee bogga, maadaama boggani uu isticmaalayo localStorage.</div>
+        <div class="note" style="margin-top:14px;"><a href="#" id="adminLogoutBtn" style="color:var(--gold);text-decoration:underline;">🔒 Ka bax admin-ka (Log out)</a></div>
+      </form>
+      <div class="preview-side">
+        <div class="hint-label">Muuqaal Hordhac ah</div>
+        <div class="preview-card">
+          <div class="card">
+            <div class="cover" id="previewCover" style="background:linear-gradient(145deg, var(--gold), var(--gold-dim));">
+              <div class="badge" id="previewBadge">Suugaan</div>
+              <div class="letter" id="previewLetter">B</div>
+            </div>
+            <div class="card-body">
+              <h4 id="previewTitle">Cinwaanka buugga…</h4>
+              <div class="details" id="previewDetails">Faahfaahinta buugga…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sida-shaqeeyo" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><h2>Sida ay u Shaqeyso</h2><p>Sadex tallaabo oo fudud.</p></div>
+    </div>
+    <div class="grid reveal" style="grid-template-columns:repeat(3,1fr);">
+      <div class="card" style="padding:26px;"><h4 style="margin-bottom:8px;">1. Soo Geli</h4><p style="color:var(--text-muted);font-size:0.88rem;">Buugga faylkiisa iyo macluumaadkiisa ku dar foomka kore.</p></div>
+      <div class="card" style="padding:26px;"><h4 style="margin-bottom:8px;">2. Ka Muuqo</h4><p style="color:var(--text-muted);font-size:0.88rem;">Buuggu si toos ah ayuu ugu soo muuqdaa maktabadda dadweynaha.</p></div>
+      <div class="card" style="padding:26px;"><h4 style="margin-bottom:8px;">3. Soo Deji</h4><p style="color:var(--text-muted);font-size:0.88rem;">Qof kastaa wuxuu riixi karaa "Soo Deji" si uu u helo faylka.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand-text">Samaale Digital Books</div>
+        <p>Maktabad dijital ah oo bilaash ah, loo dhisay in lagu ilaaliyo oo lagu wadaago suugaanta iyo aqoonta Soomaalida — qof kasta, meel kasta.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Bogga</h5>
+          <a href="#maktabadda">Maktabadda</a>
+          <a href="#soo-geli">Soo Geli Buug</a>
+          <a href="#sida-shaqeeyo">Sida ay u Shaqeyso</a>
+        </div>
+        <div class="foot-col">
+          <h5>Qaybaha</h5>
+          <a href="#" data-cat-link="Suugaan">Suugaan</a>
+          <a href="#" data-cat-link="Gabayo">Gabayo</a>
+          <a href="#" data-cat-link="Taariikh">Taariikh</a>
+        </div>
+      </div>
+    </div>
+    <div class="zigzag" style="margin-bottom:22px;"></div>
+    <div class="foot-bottom">
+      <span>© 2026 Samaale Digital Books. Waxaa la sameeyay bilaash ahaan bulshada.</span>
+      <span>Dhismo dijital, aan server lahayn.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+(function(){
+  const CATS = {
+    "Suugaan":   {c1:"#e2ab52", c2:"#b98c3f"},
+    "Gabayo":    {c1:"#c96e6e", c2:"#a1504f"},
+    "Taariikh":  {c1:"#49aca2", c2:"#2f7d75"},
+    "Sheeko":    {c1:"#8b93d6", c2:"#5c63a8"},
+    "Cilmi":     {c1:"#84a374", c2:"#5c7a4f"}
+  };
+
+  let uploaded = [];
+  let downloadCount = 0;
+  let activeCat = "dhammaan";
+  let searchTerm = "";
+
+  const grid = document.getElementById('bookGrid');
+  const toastEl = document.getElementById('toast');
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastEl._t);
+    toastEl._t = setTimeout(()=>toastEl.classList.remove('show'), 2600);
+  }
+
+  function initial(str){ return (str||"?").trim().charAt(0).toUpperCase() || "?"; }
+
+  function fmtSize(bytes){
+    if(!bytes) return "";
+    if(bytes < 1024) return bytes+" B";
+    if(bytes < 1024*1024) return (bytes/1024).toFixed(0)+" KB";
+    return (bytes/(1024*1024)).toFixed(1)+" MB";
+  }
+
+  function cardHTML(book, idx){
+    const cat = CATS[book.cat] || CATS["Suugaan"];
+    const disabled = !book.dataUrl;
+    const hasCover = !!book.coverUrl;
+    const coverStyle = hasCover
+      ? `background-image:url('${book.coverUrl}');`
+      : `background:linear-gradient(150deg, ${cat.c1}, ${cat.c2});`;
+    return `
+      <div class="card" data-idx="${idx}">
+        <div class="cover ${hasCover ? 'has-image' : ''}" style="${coverStyle}">
+          <div class="badge">${book.cat}</div>
+          ${hasCover ? '' : `<div class="letter">${initial(book.title)}</div>`}
+        </div>
+        <div class="card-body">
+          <h4>${escapeHTML(book.title)}</h4>
+          <div class="details">${escapeHTML(book.details)}</div>
+          <div class="card-foot">
+            <span class="filesize">${fmtSize(book.size)}</span>
+            <button class="dl-btn" ${disabled ? "disabled title='Faylka buugga weli lama gelin'" : ""} data-idx="${idx}">
+              ${disabled ? "🔒 Lama Heli Karo" : "⬇ Soo Deji"}
+            </button>
+            <div class="card-actions">
+              <button class="icon-btn share-btn" data-idx="${idx}" title="La wadaag buugga">🔗 Wadaag</button>
+              ${isAdmin ? `<button class="icon-btn edit-btn" data-idx="${idx}" title="Wax ka beddel buugga">✎ Edit</button>` : ""}
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function escapeHTML(s){
+    return (s||"").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function allBooks(){ return uploaded; }
+
+  function render(){
+    const books = allBooks().filter(b=>{
+      const matchesCat = activeCat === "dhammaan" || b.cat === activeCat;
+      const matchesSearch = !searchTerm || (b.title+" "+b.details).toLowerCase().includes(searchTerm);
+      return matchesCat && matchesSearch;
+    });
+    if(books.length === 0){
+      grid.innerHTML = `<div class="empty-state">Wax buug ah lagama helin. Isku day erey kale, ama <a href="#soo-geli" style="color:var(--gold);text-decoration:underline;">soo geli buug cusub</a>.</div>`;
+    } else {
+      grid.innerHTML = books.map((b,i)=>cardHTML(b, allBooks().indexOf(b))).join('');
+    }
+    updateStats();
+  }
+
+  function updateStats(){
+    const books = allBooks();
+    document.getElementById('statBooks').textContent = books.length;
+    document.getElementById('statCats').textContent = new Set(books.map(b=>b.cat)).size;
+    document.getElementById('statDownloads').textContent = downloadCount;
+  }
+
+  /* ---------- Adsterra SmartLinks (rotated per download) ---------- */
+  const ADSTERRA_SMARTLINKS = [
+    "https://www.effectivecpmnetwork.com/cx8274pqny?key=8a9ba456d6ce66ca5e16c72bf56d3098",
+    "https://www.effectivecpmnetwork.com/ub94dd4pd4?key=cc540354f83918267873466b58896cd5"
+  ];
+  let smartlinkTurn = 0;
+  function openSmartlink(){
+    const url = ADSTERRA_SMARTLINKS[smartlinkTurn % ADSTERRA_SMARTLINKS.length];
+    smartlinkTurn++;
+    window.open(url, '_blank', 'noopener');
+  }
+
+  grid.addEventListener('click', (e)=>{
+    const dlBtn = e.target.closest('.dl-btn');
+    if(dlBtn && !dlBtn.disabled){
+      const idx = parseInt(dlBtn.dataset.idx);
+      const book = allBooks()[idx];
+      if(!book || !book.dataUrl) return;
+      openSmartlink();
+      const a = document.createElement('a');
+      a.href = book.dataUrl;
+      a.download = book.fileName || (book.title + ".txt");
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      downloadCount++;
+      updateStats();
+      toast("Waa la soo dejinayaa: " + book.title);
+      return;
+    }
+
+    const shareBtn = e.target.closest('.share-btn');
+    if(shareBtn){
+      const idx = parseInt(shareBtn.dataset.idx);
+      const book = allBooks()[idx];
+      if(book) shareBook(book);
+      return;
+    }
+
+    const editBtn = e.target.closest('.edit-btn');
+    if(editBtn){
+      const idx = parseInt(editBtn.dataset.idx);
+      const book = allBooks()[idx];
+      if(book) startEditBook(idx, book);
+      return;
+    }
+  });
+
+  /* ---------- share a book ---------- */
+  async function shareBook(book){
+    const pageUrl = (location.href.split('#')[0]) + '#maktabadda';
+    const shareText = `📚 ${book.title}\n${book.details}\n\nKa akhri/soo deji Samaale Digital Books:`;
+
+    // Always share text + our own site link (NOT the raw file) so recipients
+    // land on our website — sharing the actual file caused some apps
+    // (e.g. WhatsApp on Android) to re-host it and hand out a Google Drive
+    // link instead of our link.
+    try{
+      if(navigator.share){
+        await navigator.share({ title: book.title, text: shareText, url: pageUrl });
+        toast("✅ Buugga waa la wadaagay.");
+        return;
+      }
+    }catch(err){
+      if(err && err.name === 'AbortError') return;
+    }
+
+    // Last resort: copy details to clipboard.
+    try{
+      await navigator.clipboard.writeText(`${shareText}\n${pageUrl}`);
+      toast("🔗 Macluumaadka buugga waa lagu koobiyeeyay clipboard-ka.");
+    }catch(err){
+      toast("⚠️ Wadaajintu ma shaqeyn biraawsarkan.");
+    }
+  }
+
+  document.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      activeCat = chip.dataset.cat;
+      render();
+    });
+  });
+
+  document.getElementById('searchInput').addEventListener('input', (e)=>{
+    searchTerm = e.target.value.trim().toLowerCase();
+    render();
+  });
+
+  document.querySelectorAll('[data-cat-link]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const cat = a.dataset.catLink;
+      document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active', c.dataset.cat===cat));
+      activeCat = cat;
+      render();
+      document.getElementById('maktabadda').scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  /* ---------- admin gate ---------- */
+  // Change this to your own secret key. This is a simple client-side gate
+  // (there is no real backend), so treat it as a light deterrent, not
+  // strong security — anyone who reads the page source can find it.
+  const ADMIN_KEY = "samaale2026";
+  let isAdmin = false;
+
+  const adminGate = document.getElementById('adminGate');
+  const uploadPanel = document.getElementById('uploadPanel');
+  const adminPass = document.getElementById('adminPass');
+  const adminLoginBtn = document.getElementById('adminLoginBtn');
+  const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+
+  function setAdminUI(){
+    adminGate.style.display = isAdmin ? "none" : "grid";
+    uploadPanel.style.display = isAdmin ? "grid" : "none";
+  }
+
+  adminLoginBtn.addEventListener('click', ()=>{
+    if(adminPass.value === ADMIN_KEY){
+      isAdmin = true;
+      adminPass.value = "";
+      setAdminUI();
+      render();
+      toast("✅ Ku soo dhawoow, waad geli kartaa buugaag cusub.");
+    } else {
+      toast("❌ Furaha waa qalad. Isku day mar kale.");
+    }
+  });
+  adminPass.addEventListener('keydown', (e)=>{
+    if(e.key === "Enter"){ e.preventDefault(); adminLoginBtn.click(); }
+  });
+  adminLogoutBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    isAdmin = false;
+    if(typeof exitEditMode === 'function') exitEditMode();
+    setAdminUI();
+    render();
+    toast("Waad ka baxday admin-ka.");
+  });
+  setAdminUI();
+
+  /* ---------- upload form + live preview ---------- */
+  const fTitle = document.getElementById('fTitle');
+  const fDetails = document.getElementById('fDetails');
+  const fCat = document.getElementById('fCat');
+  const fFile = document.getElementById('fFile');
+  const dropZone = document.getElementById('dropZone');
+  const dropZoneText = document.getElementById('dropZoneText');
+  let selectedFile = null;
+
+  const fCover = document.getElementById('fCover');
+  const coverDropZone = document.getElementById('coverDropZone');
+  const coverDropZoneText = document.getElementById('coverDropZoneText');
+  let selectedCover = null;
+  let selectedCoverDataUrl = null;
+
+  /* ---------- edit existing book ---------- */
+  let editingIdx = null; // null = adding a new book; number = editing uploaded[editingIdx]
+  const uploadSubmitBtn = document.getElementById('uploadSubmitBtn');
+  const cancelEditBtn = document.getElementById('cancelEditBtn');
+  const deleteBookBtn = document.getElementById('deleteBookBtn');
+  const editModeNote = document.getElementById('editModeNote');
+
+  function startEditBook(idx, book){
+    if(!isAdmin){ toast("🔒 Fadlan marka hore geli furaha maamulka."); return; }
+    editingIdx = idx;
+
+    fTitle.value = book.title || "";
+    fDetails.value = book.details || "";
+    fCat.value = book.cat || "Suugaan";
+
+    // Keep the existing file/cover unless the admin picks new ones.
+    selectedFile = null;
+    selectedCover = null;
+    selectedCoverDataUrl = book.coverUrl || null;
+
+    dropZoneText.innerHTML = book.dataUrl
+      ? `📄 Fayl hore ayaa jira: <strong>${escapeHTML(book.fileName || '')}</strong> (${fmtSize(book.size)}) — tuur fayl cusub haddii aad rabto inaad bedasho`
+      : `Halkan ku <strong>tuur faylka</strong>, ama guji si aad u doorato`;
+    coverDropZoneText.innerHTML = book.coverUrl
+      ? `<img class="cover-thumb" src="${book.coverUrl}" alt=""><div>✅ Sawirka hore. Tuur mid cusub si aad u bedasho</div>`
+      : `Halkan ku <strong>tuur sawirka qaabka</strong> (JPG), ama guji si aad u doorato`;
+
+    uploadSubmitBtn.textContent = "Cusboonaysii Buugga";
+    cancelEditBtn.style.display = "";
+    deleteBookBtn.style.display = "";
+    editModeNote.style.display = "";
+
+    updatePreview();
+    document.getElementById('soo-geli').scrollIntoView({behavior:'smooth'});
+  }
+
+  function exitEditMode(){
+    editingIdx = null;
+    uploadSubmitBtn.textContent = "Soo Geli Buugga";
+    cancelEditBtn.style.display = "none";
+    deleteBookBtn.style.display = "none";
+    editModeNote.style.display = "none";
+  }
+
+  cancelEditBtn.addEventListener('click', ()=>{
+    exitEditMode();
+    document.getElementById('uploadForm').reset();
+    selectedFile = null;
+    selectedCover = null;
+    selectedCoverDataUrl = null;
+    dropZoneText.innerHTML = `Halkan ku <strong>tuur faylka</strong>, ama guji si aad u doorato`;
+    coverDropZoneText.innerHTML = `Halkan ku <strong>tuur sawirka qaabka</strong> (JPG), ama guji si aad u doorato`;
+    fCat.value = "Suugaan";
+    updatePreview();
+  });
+
+  deleteBookBtn.addEventListener('click', async ()=>{
+    if(editingIdx === null) return;
+    if(!confirm("Ma hubtaa inaad tirtirto buuggan? Tallaabadan lama soo celin karo.")) return;
+    uploaded.splice(editingIdx, 1);
+    await persist();
+    exitEditMode();
+    document.getElementById('uploadForm').reset();
+    selectedFile = null;
+    selectedCover = null;
+    selectedCoverDataUrl = null;
+    dropZoneText.innerHTML = `Halkan ku <strong>tuur faylka</strong>, ama guji si aad u doorato`;
+    coverDropZoneText.innerHTML = `Halkan ku <strong>tuur sawirka qaabka</strong> (JPG), ama guji si aad u doorato`;
+    fCat.value = "Suugaan";
+    updatePreview();
+    render();
+    toast("🗑 Buugga waa la tirtiray.");
+  });
+
+  function updatePreview(){
+    const cat = CATS[fCat.value] || CATS["Suugaan"];
+    const previewCover = document.getElementById('previewCover');
+    const previewLetterEl = document.getElementById('previewLetter');
+    if(selectedCoverDataUrl){
+      previewCover.style.background = `url('${selectedCoverDataUrl}') center/cover no-repeat`;
+      previewLetterEl.style.display = "none";
+    } else {
+      previewCover.style.background = `linear-gradient(145deg, ${cat.c1}, ${cat.c2})`;
+      previewLetterEl.style.display = "";
+      previewLetterEl.textContent = initial(fTitle.value);
+    }
+    document.getElementById('previewBadge').textContent = fCat.value;
+    document.getElementById('previewTitle').textContent = fTitle.value || "Cinwaanka buugga…";
+    document.getElementById('previewDetails').textContent = fDetails.value || "Faahfaahinta buugga…";
+  }
+  [fTitle, fDetails, fCat].forEach(el=>el.addEventListener('input', updatePreview));
+  fCat.addEventListener('change', updatePreview);
+
+  dropZone.addEventListener('click', ()=>fFile.click());
+  dropZone.addEventListener('dragover', e=>{e.preventDefault();dropZone.classList.add('dragover');});
+  dropZone.addEventListener('dragleave', ()=>dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e=>{
+    e.preventDefault();dropZone.classList.remove('dragover');
+    if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+  fFile.addEventListener('change', e=>{
+    if(e.target.files.length) handleFile(e.target.files[0]);
+  });
+
+  function handleFile(file){
+    if(file.size > 1.5*1024*1024){
+      toast("⚠️ Faylku waa weyn yahay (ugu badnaan 1.5MB).");
+      return;
+    }
+    selectedFile = file;
+    dropZoneText.innerHTML = `✅ <strong>${escapeHTML(file.name)}</strong> (${fmtSize(file.size)})`;
+  }
+
+  /* ---------- cover image drop zone ---------- */
+  coverDropZone.addEventListener('click', ()=>fCover.click());
+  coverDropZone.addEventListener('dragover', e=>{e.preventDefault();coverDropZone.classList.add('dragover');});
+  coverDropZone.addEventListener('dragleave', ()=>coverDropZone.classList.remove('dragover'));
+  coverDropZone.addEventListener('drop', e=>{
+    e.preventDefault();coverDropZone.classList.remove('dragover');
+    if(e.dataTransfer.files.length) handleCoverFile(e.dataTransfer.files[0]);
+  });
+  fCover.addEventListener('change', e=>{
+    if(e.target.files.length) handleCoverFile(e.target.files[0]);
+  });
+
+  async function handleCoverFile(file){
+    if(!/^image\/jpe?g$/i.test(file.type) && !/\.jpe?g$/i.test(file.name)){
+      toast("⚠️ Sawirka qaabka waa inuu ahaadaa JPG.");
+      return;
+    }
+    if(file.size > 800*1024){
+      toast("⚠️ Sawirku waa weyn yahay (ugu badnaan 800KB).");
+      return;
+    }
+    try{
+      selectedCoverDataUrl = await fileToDataUrl(file);
+      selectedCover = file;
+      coverDropZoneText.innerHTML = `<img class="cover-thumb" src="${selectedCoverDataUrl}" alt=""><div>✅ <strong>${escapeHTML(file.name)}</strong> (${fmtSize(file.size)})</div>`;
+      updatePreview();
+    }catch(err){
+      toast("Khalad ayaa dhacay marka sawirka la akhrinayay.");
+    }
+  }
+
+  document.getElementById('uploadForm').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    if(!isAdmin){
+      toast("🔒 Fadlan marka hore geli furaha maamulka.");
+      return;
+    }
+    if(!fTitle.value.trim() || !fDetails.value.trim()){
+      toast("Fadlan buuxi cinwaanka iyo faahfaahinta buugga.");
+      return;
+    }
+    const submitBtn = e.target.querySelector('button[type=submit]');
+    const isEditing = editingIdx !== null;
+    submitBtn.disabled = true;
+    submitBtn.textContent = isEditing ? "Waa la cusboonaysiinayaa…" : "Waa la gelinayaa…";
+
+    let dataUrl = null, fileName = null, size = 0;
+    if(selectedFile){
+      try{
+        dataUrl = await fileToDataUrl(selectedFile);
+        fileName = selectedFile.name;
+        size = selectedFile.size;
+      }catch(err){
+        toast("Khalad ayaa dhacay marka faylka la akhrinayay.");
+      }
+    } else if(isEditing){
+      // No new file chosen while editing — keep the book's existing file.
+      const existing = uploaded[editingIdx];
+      dataUrl = existing.dataUrl;
+      fileName = existing.fileName;
+      size = existing.size;
+    }
+
+    if(isEditing){
+      const existing = uploaded[editingIdx];
+      uploaded[editingIdx] = {
+        ...existing,
+        title: fTitle.value.trim(),
+        details: fDetails.value.trim(),
+        cat: fCat.value,
+        dataUrl, fileName, size,
+        coverUrl: selectedCoverDataUrl || null
+      };
+    } else {
+      const newBook = {
+        title: fTitle.value.trim(),
+        details: fDetails.value.trim(),
+        cat: fCat.value,
+        dataUrl, fileName, size,
+        coverUrl: selectedCoverDataUrl || null,
+        addedAt: Date.now()
+      };
+      uploaded.unshift(newBook);
+      if(uploaded.length > 12) uploaded = uploaded.slice(0,12); // keep shared storage light
+    }
+
+    await persist();
+
+    // reset form
+    e.target.reset();
+    exitEditMode();
+    selectedFile = null;
+    selectedCover = null;
+    selectedCoverDataUrl = null;
+    dropZoneText.innerHTML = `Halkan ku <strong>tuur faylka</strong>, ama guji si aad u doorato`;
+    coverDropZoneText.innerHTML = `Halkan ku <strong>tuur sawirka qaabka</strong> (JPG), ama guji si aad u doorato`;
+    fCat.value = "Suugaan";
+    fDetails.value = "";
+    updatePreview();
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Soo Geli Buugga";
+
+    render();
+    toast(isEditing ? "✅ Buugga waa la cusboonaysiiyay!" : "📚 Buugu si guul leh ayuu ugu daray Maktabadda!");
+    if(!isEditing) document.getElementById('maktabadda').scrollIntoView({behavior:'smooth'});
+  });
+
+  function fileToDataUrl(file){
+    return new Promise((resolve, reject)=>{
+      const reader = new FileReader();
+      reader.onload = ()=>resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function persist(){
+    try{
+      localStorage.setItem('samaale_books', JSON.stringify(uploaded));
+    }catch(err){
+      console.error('Storage error:', err);
+      toast("⚠️ Kaydintu way fashilantay (browser-ka xaddidan yahay).");
+    }
+  }
+
+  async function loadStored(){
+    try{
+      const raw = localStorage.getItem('samaale_books');
+      if(raw){
+        uploaded = JSON.parse(raw);
+      }
+    }catch(err){
+      uploaded = [];
+    }
+    render();
+  }
+
+  /* ---------- hero shelf build ---------- */
+  const shelf = document.getElementById('heroShelf');
+  const shelfColors = [CATS.Suugaan, CATS.Gabayo, CATS.Taariikh, CATS.Sheeko, CATS.Cilmi];
+  const shelfTitles = ["Suugaan","Gabayo","Taariikh","Sheeko","Cilmi","Aqoon","Hidde","Xikmad","Dhaqan","Suugaan","Gabayo","Cilmi"];
+  shelfTitles.forEach((t,i)=>{
+    const c = shelfColors[i % shelfColors.length];
+    const h = 55 + Math.round(Math.sin(i*1.3)*18) + (i%3)*14;
+    const div = document.createElement('div');
+    div.className = 'spine';
+    div.style.height = h+'%';
+    div.style.background = `linear-gradient(180deg, ${c.c1}, ${c.c2})`;
+    div.innerHTML = `<span>${t}</span>`;
+    shelf.appendChild(div);
+  });
+
+  /* ---------- reveal on scroll ---------- */
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('in'); });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  updatePreview();
+  loadStored();
+})();
+</script>
+</body>
+</html>
